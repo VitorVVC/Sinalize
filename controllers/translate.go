@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"SinalizeB/constants"
 	"SinalizeB/models"
 	"SinalizeB/utils"
 	"github.com/go-playground/validator/v10"
@@ -8,7 +9,6 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"net/http"
-	"os"
 )
 
 type TranslateController struct {
@@ -17,8 +17,8 @@ type TranslateController struct {
 }
 
 func NewTranslateController() *TranslateController {
-	// TODO -> EnvString
-	dsn := os.Getenv("DATABASE_DSN")
+	// TODO -> This is correctly ?
+	dsn := utils.EnvString(constants.DatabaseDSN)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect to database")
@@ -48,4 +48,24 @@ func (t *TranslateController) Create(ctx echo.Context) error {
 	}
 
 	return utils.HTTPCreated(ctx, data)
+}
+
+// Todo => Finish that func
+func (t *TranslateController) Update(ctx echo.Context) error {
+	return nil
+}
+
+// Todo => Finish that func
+func (t *TranslateController) Delete(ctx echo.Context) error {
+	return nil
+}
+
+// Todo => Finish that func
+func (t *TranslateController) Get(ctx echo.Context) error {
+	return nil
+}
+
+// Todo => Finish that func
+func (t *TranslateController) GetAll(ctx echo.Context) error {
+	return nil
 }
