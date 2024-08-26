@@ -33,3 +33,11 @@ func GetDBConfig() *models.DBConfig {
 	}
 	return &cfg.DB
 }
+
+func GetDSN() string {
+	cfg, err := LoadConfig()
+	if err != nil {
+		log.Fatalf("erro to load configs: %v", err)
+	}
+	return cfg.DSN.Dsn
+}

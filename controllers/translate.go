@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"SinalizeB/constants"
+	"SinalizeB/configs"
 	"SinalizeB/models"
 	"SinalizeB/utils"
 	"github.com/go-playground/validator/v10"
@@ -17,8 +17,8 @@ type TranslateController struct {
 }
 
 func NewTranslateController() *TranslateController {
-	// TODO -> This is correctly ?
-	dsn := utils.EnvString(constants.DatabaseDSN)
+	// TODO => refactor this to using repositories to postgres
+	dsn := configs.GetDSN()
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect to database")
