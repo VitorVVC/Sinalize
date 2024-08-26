@@ -7,4 +7,5 @@ const (
 	PostgresUser = "POSTGRES_USER"
 	PostgresPass = "POSTGRES_PASS"
 	PostgresName = "POSTGRES_NAME"
+	DatabaseDSN  = "DATABASE_DSN"
 )

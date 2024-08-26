@@ -15,6 +15,7 @@ var Defaults = map[string]interface{}{
 	constants.PostgresUser: "your_user",
 	constants.PostgresPass: "your_pass",
 	constants.PostgresName: "your_name",
+	constants.DatabaseDSN:  "your_database",
 }
 
 func init() {
