@@ -19,6 +19,9 @@ func LoadConfig() (*models.Config, error) {
 			Pass:     utils.EnvString(constants.PostgresPass),
 			Database: utils.EnvString(constants.PostgresName),
 		},
+		DSN: models.DSNService{
+			Dsn: utils.EnvString(constants.DatabaseDSN),
+		},
 	}
 	return cfg, nil
 }
