@@ -20,7 +20,7 @@ func Postgres() *gorm.DB {
 			utils.EnvString(constants.PostgresPass),
 			utils.EnvString(constants.PostgresName),
 			utils.EnvInt(constants.PostgresPort),
-			"disable",
+			"require",
 		)
 
 		db, err := gorm.Open(postgres.Open(connectionURL))
