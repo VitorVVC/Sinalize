@@ -1,34 +1,24 @@
 package controllers
 
 import (
-	"SinalizeB/configs"
 	"SinalizeB/models"
+	"SinalizeB/services"
 	"SinalizeB/utils"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"net/http"
 )
 
 type TranslateController struct {
 	validator *validator.Validate
-	db        *gorm.DB
+	postgres  *gorm.DB
 }
 
 func NewTranslateController() *TranslateController {
-	// TODO => refactor this to using repositories to postgres
-	dsn := configs.GetDSN()
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect to database")
-	}
-
-	db.AutoMigrate(&models.Translate{})
-
 	return &TranslateController{
 		validator: validator.New(),
-		db:        db,
+		postgres:  services.Postgres(),
 	}
 }
 
@@ -43,7 +33,7 @@ func (t *TranslateController) Create(ctx echo.Context) error {
 		utils.HTTPFail(ctx, http.StatusBadRequest, err, "failed to validate body")
 	}
 
-	if err := t.db.Create(&data).Error; err != nil {
+	if err := t.postgres.Create(&data).Error; err != nil {
 		return utils.HTTPFail(ctx, http.StatusInternalServerError, err, "failed to save data")
 	}
 
@@ -51,21 +41,13 @@ func (t *TranslateController) Create(ctx echo.Context) error {
 }
 
 // Todo => Finish that func
-func (t *TranslateController) Update(ctx echo.Context) error {
-	return nil
-}
+func (t *TranslateController) Update(ctx echo.Context) error { return nil }
 
 // Todo => Finish that func
-func (t *TranslateController) Delete(ctx echo.Context) error {
-	return nil
-}
+func (t *TranslateController) Delete(ctx echo.Context) error { return nil }
 
 // Todo => Finish that func
-func (t *TranslateController) Get(ctx echo.Context) error {
-	return nil
-}
+func (t *TranslateController) Get(ctx echo.Context) error { return nil }
 
 // Todo => Finish that func
-func (t *TranslateController) GetAll(ctx echo.Context) error {
-	return nil
-}
+func (t *TranslateController) GetAll(ctx echo.Context) error { return nil }
